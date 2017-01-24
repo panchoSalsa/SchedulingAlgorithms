@@ -18,6 +18,12 @@ public class Main
 			// driver ...
 //			output_file_handler.Print(resource_manager.GetReply());
 			System.out.println(input_file_handler.current_line);
+			
+			
+			// convert current_line into a list of processes
+			
+			
+			
 			input_file_handler.GetNextLine();
 		}
 		
