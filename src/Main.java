@@ -1,5 +1,6 @@
 import fileHandlers.InputFileHandler;
 import scheduler.Scheduler;
+import schedulingAlgorithms.FIFO;
 import schedulingAlgorithms.MLF;
 
 public class Main
@@ -25,14 +26,16 @@ public class Main
 //			Scheduler scheduler = new Scheduler(input_file_handler.current_line);
 //			scheduler.PrintProcessesState();
 			
+			
+			// working code
+			FIFO fifo = new FIFO(input_file_handler.current_line);
+			fifo.Run();
+			fifo.Print();
+			
+			// working code
 			MLF mlf = new MLF(input_file_handler.current_line);
 			mlf.Run();
 			mlf.Print();
-			
-			// convert current_line into a list of processes
-
-			
-			
 			
 			
 			input_file_handler.GetNextLine();
