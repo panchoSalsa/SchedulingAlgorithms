@@ -25,7 +25,7 @@ public class PriorityQueue
 		priority_queue.add(process);
 	}
 	
-	public void Execute(int clock) {
+	public boolean Execute(int clock) {
 		Process process = priority_queue.getFirst();
 		
 		process.ExecuteOneClockCycle();
@@ -39,10 +39,17 @@ public class PriorityQueue
 			priority_queue.removeFirst();
 			t = T; 
 		} else if (t == 0) {
+			// time has expired for this process
+			// move it to lower level 
 			priority_queue.removeFirst();
+			if (lower_queue == null)
+				return true; 
+			
 			lower_queue.Add(process);
 			t = T; 
 		}
+		
+		return false; 
 	}
 			
 }

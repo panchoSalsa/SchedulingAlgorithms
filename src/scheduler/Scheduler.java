@@ -9,6 +9,7 @@ public class Scheduler
 {
 	public LinkedList<Process> processes;
 	public int clock = 0; 
+	public boolean error = false; 
 	
 	public Scheduler(String input) {
 		processes = new LinkedList<Process>();
@@ -44,6 +45,11 @@ public class Scheduler
 	}
 	
 	public void Print() {
+		if (error) {
+			System.out.println("error");
+			return; 
+		}
+		
 		int n = 0; 
 		double total_turnaround_time = 0; 
 		

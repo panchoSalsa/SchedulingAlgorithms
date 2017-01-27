@@ -7,6 +7,9 @@ import scheduler.Scheduler;
 import dataStructures.PriorityQueue;
 import dataStructures.Process;
 
+// MLF does not handle when the times are long
+// Actually i still need to test the output
+
 public class MLF extends Scheduler
 {	
 	// you should never remove any items from the priority_list
@@ -39,7 +42,7 @@ public class MLF extends Scheduler
 		
 		PriorityQueue highest_priority; 
 		
-		while (! AllProcessesCompleted()) {
+		while (! AllProcessesCompleted() && ! error) {
 			
 			UpdateReadyList();
 			MoveFromReadyListToFifthPriority();
@@ -47,7 +50,8 @@ public class MLF extends Scheduler
 			highest_priority = GetHighestPriority();
 			
 			if (highest_priority != null) {
-				highest_priority.Execute(clock);
+				// only execute the process for one cycle
+				error = highest_priority.Execute(clock);
 			}
 			
 			++clock; 
