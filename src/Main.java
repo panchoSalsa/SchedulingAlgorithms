@@ -2,6 +2,7 @@ import fileHandlers.InputFileHandler;
 import scheduler.Scheduler;
 import schedulingAlgorithms.FIFO;
 import schedulingAlgorithms.MLF;
+import schedulingAlgorithms.ShortestJob;
 
 public class Main
 {	
@@ -32,10 +33,21 @@ public class Main
 			fifo.Run();
 			fifo.Print();
 			
+			ShortestJob shortest_job_first = new ShortestJob(input_file_handler.current_line, false);
+			shortest_job_first.Run();
+			shortest_job_first.Print();
+			
+			
+			ShortestJob shortest_job_remaining = new ShortestJob(input_file_handler.current_line, true);
+			shortest_job_remaining.Run();
+			shortest_job_remaining.Print();
+			
 			// working code
 			MLF mlf = new MLF(input_file_handler.current_line);
 			mlf.Run();
 			mlf.Print();
+			
+			System.out.println("");
 			
 			
 			input_file_handler.GetNextLine();
