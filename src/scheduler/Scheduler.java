@@ -4,15 +4,24 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 import dataStructures.Process;
+import fileHandlers.OutputFileHandler;
+
+// TO-DO
+// 1. add output file handler class to project
+// 2. create object inside Scheduler class
+// 3. use it to print to text file inside this project
+
 
 public class Scheduler
 {
 	public LinkedList<Process> processes;
 	public int clock = 0; 
 	public boolean error = false; 
-	
-	public Scheduler(String input) {
+	public OutputFileHandler output_file_handler;
+
+	public Scheduler(String input, OutputFileHandler output_file_handler) {
 		processes = new LinkedList<Process>();
+		this.output_file_handler = output_file_handler;
 		
 		InitializeProcesses(input);
 	}
@@ -31,8 +40,10 @@ public class Scheduler
 	}
 	
 	public void PrintProcessesState() {
+		StringBuilder sb = new StringBuilder(64);
 		for (Process process : processes)
-			process.PrintProcess();
+			process.PrintProcess(output_file_handler);
+//		return sb.toString();
 	}
 	
 	public boolean AllProcessesCompleted() {
@@ -45,9 +56,20 @@ public class Scheduler
 	}
 	
 	public void Print() {
+//		StringBuilder sb = new StringBuilder(64);
+//		sb.append("select id1, ");
+//		sb.append(id2);
+//		sb.append(" from ");
+//		sb.append(table);
+	
+		
+		
 		if (error) {
-			System.out.println("error");
-			return; 
+			//System.out.println("error");
+			output_file_handler.Print("error");
+//			sb.append("error");
+//			return sb.toString(); 
+			return;
 		}
 		
 		int n = 0; 
@@ -63,13 +85,21 @@ public class Scheduler
 		
 		df.setRoundingMode(RoundingMode.DOWN); // Note this extra step
 		
-		System.out.print(df.format(avg_turaround_time) + " ");
+//		System.out.print(df.format(avg_turaround_time) + " ");
+		output_file_handler.Print(df.format(avg_turaround_time) + " ");
+//		sb.append(df.format(avg_turaround_time) + " ");
 		
 		for (Process process: processes) {
-			process.PrintProcess();
+//			process.PrintProcess();
+			process.PrintProcess(output_file_handler);
+//			sb.append(process.PrintProcess());
 		}
 		
-		System.out.println("");
+		//System.out.println("");
+		output_file_handler.Print("\n");
+//		sb.append("\n");
+//		
+//		return sb.toString();
 	}
 	
 }

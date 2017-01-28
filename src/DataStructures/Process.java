@@ -1,5 +1,7 @@
 package dataStructures;
 
+import fileHandlers.OutputFileHandler;
+
 // can we assume time_remaining is > 0
 
 
@@ -22,9 +24,11 @@ public class Process
 		return finish_time - arrival_time; 
 	}
 	
-	public void PrintProcess() {
+	public void PrintProcess(OutputFileHandler output_file_handler) {
 //		System.out.println("pid: " + pid  + " , arrival_time: " + arrival_time + ", time_remaining: " + time_remaining);
-		System.out.print(GetTurnAroundTime() + " ");
+		//System.out.print(GetTurnAroundTime() + " ");
+		output_file_handler.Print(GetTurnAroundTime() + " ");
+//		return new String (GetTurnAroundTime() + " ");
 	}
 
 	public void ExecuteOneClockCycle()

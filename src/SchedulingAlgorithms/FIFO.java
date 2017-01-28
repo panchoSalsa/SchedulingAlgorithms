@@ -2,7 +2,8 @@ package schedulingAlgorithms;
 
 import java.util.LinkedList;
 import scheduler.Scheduler;
-import dataStructures.Process; 
+import dataStructures.Process;
+import fileHandlers.OutputFileHandler; 
 
 // FIFO might have errors
 // 0 100 50 100 60 20
@@ -12,8 +13,8 @@ public class FIFO extends Scheduler
 {
 	public LinkedList<Process> ready_list; 
 	
-	public FIFO(String input) {
-		super(input);
+	public FIFO(String input, OutputFileHandler output_file_handler) {
+		super(input, output_file_handler);
 		
 		ready_list = new LinkedList<Process>();
 		

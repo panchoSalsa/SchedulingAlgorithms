@@ -2,7 +2,8 @@ package schedulingAlgorithms;
 
 import java.util.LinkedList;
 import scheduler.Scheduler;
-import dataStructures.Process; 
+import dataStructures.Process;
+import fileHandlers.OutputFileHandler; 
 
 public class ShortestJob extends Scheduler
 {
@@ -11,8 +12,8 @@ public class ShortestJob extends Scheduler
 	public LinkedList<Process> ready_list;
 	private Process next; 
 	
-	public ShortestJob(String input, boolean preemption_flag) {
-		super(input);
+	public ShortestJob(String input, boolean preemption_flag, OutputFileHandler output_file_handler) {
+		super(input, output_file_handler);
 		
 		this.preemption_flag = preemption_flag; 
 		ready_list = new LinkedList<Process>();
